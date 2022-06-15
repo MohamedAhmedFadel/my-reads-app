@@ -1,24 +1,10 @@
 import View from "./view";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { getAll, update } from "../BooksAPI";
 
-const Home = () => {
-    
-  const [books, setBooks] = useState([]);
- 
 
-  const fetchData = () => {
-    getAll().then((data) => {
-      setBooks(data);
-    });
-  };
-  const changeCategoryShelf = (book, shelf) => {
-    update(book, shelf);
-    fetchData();
-  };
+const Home = (props) => {
 
-  fetchData();
+
 
   return (
     <div className="list-books">
@@ -28,19 +14,19 @@ const Home = () => {
       <div className="list-books-content">
         <div>
           <View
-            books={books}
+            books={props.books}
             category="currentlyReading"
-            changeCategoryShelf={changeCategoryShelf}
+            changeCategoryShelf={props.changeCategoryShelf}
           />
           <View
-            books={books}
+            books={props.books}
             category="wantToRead"
-            changeCategoryShelf={changeCategoryShelf}
+            changeCategoryShelf={props.changeCategoryShelf}
           />
           <View
-            books={books}
+            books={props.books}
             category="read"
-            changeCategoryShelf={changeCategoryShelf}
+            changeCategoryShelf={props.changeCategoryShelf}
           />
         </div>
       </div>
