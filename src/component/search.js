@@ -2,19 +2,25 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import BookView from "./bookview";
 import { search } from "../BooksAPI";
+import propTypes from "prop-types";
 
 const Search = (props) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
   const changeQ = (query) => {
-    setQuery(query.trim());
+    setQuery(query);
   };
 
   const searchF = (query) => {
     if (query.length !== 0) {
-      search(query).then((data) => {
-        setResults(data);
+      search(query).then((results) => {
+        // console.log(results)
+        if (results.error) {
+          setResults([]);
+        } else {
+          setResults(results);
+        }
       });
     } else {
       setResults([]);
@@ -34,7 +40,7 @@ const Search = (props) => {
             placeholder="Search by title or author"
             onChange={(event) => {
               changeQ(event.target.value);
-              searchF(query);
+              searchF(event.target.value);
             }}
           />
         </div>
@@ -54,4 +60,9 @@ const Search = (props) => {
     </div>
   );
 };
+
+Search.propTypes = {
+  changeCategoryShelf: propTypes.func.isRequired,
+};
+
 export default Search;

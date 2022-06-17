@@ -1,11 +1,8 @@
 import View from "./view";
 import { Link } from "react-router-dom";
-
+import propTypes from "prop-types";
 
 const Home = (props) => {
-
-
-
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -38,4 +35,10 @@ const Home = (props) => {
     </div>
   );
 };
+
+Home.propTypes = {
+  books: propTypes.array.isRequired,
+  changeCategoryShelf: propTypes.func.isRequired,
+};
+
 export default Home;
