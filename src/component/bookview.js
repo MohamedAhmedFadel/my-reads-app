@@ -46,7 +46,7 @@ const BookView = (props) => {
 };
 
 BookView.propTypes = {
-  books: propTypes.array.isRequired,
+  books: propTypes.array,
   category: propTypes.string,
   changeCategoryShelf: propTypes.func.isRequired,
 };
