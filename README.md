@@ -22,8 +22,11 @@ this a wonderful app where you can organize your Reads
 ## dependencies
  be sure that you have 
  *node installed in your machine (v16.13.1)
+
 open the app run this commands in the terminal In the project directory
+
 *npm install
+
 *npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

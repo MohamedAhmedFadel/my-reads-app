@@ -43,7 +43,7 @@ function App() {
           />
           <Route
             path="/search"
-            element={<Search changeCategoryShelf={changeCategoryShelf} />}
+            element={<Search books={books} changeCategoryShelf={changeCategoryShelf} />}
           />
         </Routes>
       </BrowserRouter>

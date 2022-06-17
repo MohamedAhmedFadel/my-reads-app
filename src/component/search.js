@@ -7,7 +7,7 @@ import propTypes from "prop-types";
 const Search = (props) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-
+  const [category, setCategory] = useState("");
   const changeQ = (query) => {
     setQuery(query);
   };
@@ -47,14 +47,25 @@ const Search = (props) => {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {results.map((result) => (
-            <div key={result.id}>
-              <BookView
-                book={result}
-                changeCategoryShelf={props.changeCategoryShelf}
-              />
-            </div>
-          ))}
+          {results.map((result) => {
+            props.books.forEach((book) => {
+              if (book.id === result.id) {
+                setCategory(book.shelf);
+              } else {
+                setCategory("none");
+              }
+            });
+
+            return (
+              <li key={result.id}>
+                <BookView
+                  book={result}
+                  category={category}
+                  changeCategoryShelf={props.changeCategoryShelf}
+                />
+              </li>
+            );
+          })}
         </ol>
       </div>
     </div>
@@ -62,6 +73,7 @@ const Search = (props) => {
 };
 
 Search.propTypes = {
+  books: propTypes.array,
   changeCategoryShelf: propTypes.func.isRequired,
 };
 

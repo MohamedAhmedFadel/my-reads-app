@@ -47,7 +47,7 @@ const BookView = (props) => {
 
 BookView.propTypes = {
   books: propTypes.array,
-  category: propTypes.string,
+  category: propTypes.string.isRequired,
   changeCategoryShelf: propTypes.func.isRequired,
 };
 
